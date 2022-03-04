@@ -7,25 +7,25 @@ describe("Comments", function () {
     const comments = await Comments.deploy();
     await comments.deployed();
 
-    expect(await comments.getComment("my-first-blog-post")).to.be.lengthOf(0);
+    expect(await comments.getComments("my-first-blog-post")).to.be.lengthOf(0);
     
-    const txt1= await comments.addComments(
+    const txt1= await comments.addComment(
       "my-first-blog-post",
       "its my first comment"
       );
     await txt1.wait();
     
-    expect(await comments.getComment("my-first-blog-post")).to.be.lengthOf(1);
-    expect(await comments.getComment("my-second-blog-post")).to.be.lengthOf(0);
+    expect(await comments.getComments("my-first-blog-post")).to.be.lengthOf(1);
+    expect(await comments.getComments("my-second-blog-post")).to.be.lengthOf(0);
     
-    const txt2= await comments.addComments(
+    const txt2= await comments.addComment(
       "my-second-blog-post",
       "this comment is on diffrent thread but its my first comment there"
       );
     await txt2.wait();
       
-    expect(await comments.getComment("my-first-blog-post")).to.be.lengthOf(1);
-    expect(await comments.getComment("my-second-blog-post")).to.be.lengthOf(1);
+    expect(await comments.getComments("my-first-blog-post")).to.be.lengthOf(1);
+    expect(await comments.getComments("my-second-blog-post")).to.be.lengthOf(1);
 
   });
 });
